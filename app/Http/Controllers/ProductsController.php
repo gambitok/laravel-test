@@ -7,7 +7,6 @@ use App\Product;
 
 class ProductsController extends Controller
 {
-
     public function index()
     {
         $products = Product::all();
@@ -21,29 +20,22 @@ class ProductsController extends Controller
         return view('products.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        $rules = array(
+        $this->validate($request, [
             'name'       => 'required',
             'description'=> 'required',
-            'price'      => 'required'
-        );
-        $validator = Validator::make(Input::all(), $rules);
+            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/'
+        ]);
 
-        if ($validator->fails()) {
-            return redirect('products/create')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
-        } else {
-            $product = new Product;
-            $product->name       = Input::get('name');
-            $product->description= Input::get('description');
-            $product->price = Input::get('price');
-            $product->save();
+        $product = new Product;
+        $product->name          = $request->input('name');
+        $product->description   = $request->input('description');
+        $product->price         = $request->input('price');
 
-            Session::flash('message', 'Successfully created product!');
-            return redirect('products');
-        }
+        $product->save();
+
+        return redirect('products')->with('message','Successfully created product!');
     }
 
     public function show($id)
@@ -58,42 +50,38 @@ class ProductsController extends Controller
     {
         $product = Product::find($id);
 
-        return view('product.edit')
+        return view('products.edit')
             ->with('product', $product);
     }
 
-    public function update($id)
+    public function update($id,Request $request)
     {
-        $rules = array(
-            'name'          => 'required',
-            'description'   => 'required',
-            'price'         => 'required'
-        );
-        $validator = Validator::make(Input::all(), $rules);
+        $this->validate($request, [
+            'name'       => 'required',
+            'description'=> 'required',
+            'price'      => 'required|regex:/^\d+(\.\d{1,2})?$/'
+        ]);
 
-        if ($validator->fails()) {
-            return redirect('products/' . $id . '/edit')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
-        } else {
+        $product = Product::find($id);
+        $product->name          = $request->input('name');
+        $product->description   = $request->input('description');
+        $product->price         = $request->input('price');
 
-            $product = Product::find($id);
-            $product->name          = Input::get('name');
-            $product->description   = Input::get('description');
-            $product->price         = Input::get('price');
-            $product->save();
+        $product->save();
 
-            Session::flash('message', 'Successfully updated product!');
-            return redirect('products');
-        }
+        return redirect('products')->with('message',"Successfully updated product #$id!");
     }
 
     public function destroy($id)
     {
         $product = Product::find($id);
-        $product->delete();
-
-        Session::flash('message', 'Successfully deleted the product!');
-        return redirect('products');
+        if (is_null($product)) {
+            Product::query()->truncate();
+            $message="Successfully deleted all products";
+        } else {
+            $product->delete();
+            $message="Successfully deleted the product #$id!";
+        }
+        return redirect('products')->with('message',$message);
     }
 }

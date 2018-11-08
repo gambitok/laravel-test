@@ -21,12 +21,8 @@ Route::get('/contact', 'PagesController@getContact');
 
 Route::get('/messages', 'MessagesController@getMessages');
 
-Route::get('/products', 'ProductsController@index');
-
-Route::get('/products/create', 'ProductsController@create');
-
 Route::post('/contact/submit', 'MessagesController@submit');
 
-Route::post('/product/submit', 'ProductsController@submit');
+Route::resource('products', 'ProductsController');
 
 Auth::routes();

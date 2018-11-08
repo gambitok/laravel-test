@@ -2,6 +2,17 @@
 
 @section('content')
     <h1>Contact</h1>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     {!! Form::open(['url' => 'contact/submit']) !!}
         <div class="form-group">
             {{Form::label('name', 'Name')}}

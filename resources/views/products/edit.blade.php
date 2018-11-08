@@ -1,28 +1,17 @@
-<!-- app/views/products/edit.blade.php -->
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Look! I'm CRUDding</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
-
-    <nav class="navbar navbar-inverse">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{{ URL::to('products') }}">product Alert</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('products') }}">View All products</a></li>
-            <li><a href="{{ URL::to('products/create') }}">Create a product</a>
-        </ul>
-    </nav>
-
+@section('content')
     <h1>Edit {{ $product->name }}</h1>
 
-    <!-- if there are creation errors, they will show here -->
-    {{ HTML::ul($errors->all()) }}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     {{ Form::model($product, array('route' => array('products.update', $product->id), 'method' => 'PUT')) }}
 
@@ -45,6 +34,4 @@
 
     {{ Form::close() }}
 
-</div>
-</body>
-</html>
+@endsection

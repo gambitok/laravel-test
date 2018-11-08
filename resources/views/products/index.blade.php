@@ -1,27 +1,19 @@
-<!-- app/views/products/index.blade.php -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CRUD</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
+@extends('layouts.app')
 
-    <nav class="navbar navbar-inverse">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{{ URL::to('products') }}">product Alert</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('products') }}">View All products</a></li>
-            <li><a href="{{ URL::to('products/create') }}">Create a product</a>
-        </ul>
-    </nav>
-
+@section('content')
     <h1>All the products</h1>
 
-    @if (Session::has('message'))
-        <div class="alert alert-info">{{ Session::get('message') }}</div>
+    <a class="btn btn-small btn-success" href="{{ URL::to('products/create') }}"><span class="glyphicon glyphicon-plus"></span> Add product</a>
+    {{ Form::open(array('url' => 'products/truncate', 'class' => 'd-inline')) }}
+    {{ Form::hidden('_method', 'DELETE') }}
+    {{ Form::button('<span class="glyphicon glyphicon-remove"></span> Clear products', array('type' => 'submit','class' => 'btn btn-small btn-danger')) }}
+    {{ Form::close() }}
+    <br><br>
+
+    @if(session('message'))
+        <div class="alert alert-info">
+            {{session('message')}}
+        </div>
     @endif
 
     <table class="table table-striped table-bordered">
@@ -31,7 +23,7 @@
             <td>Name</td>
             <td>Description</td>
             <td>Price</td>
-            <td>Actions</td>
+            <td width="200px">Actions</td>
         </tr>
         </thead>
         <tbody>
@@ -42,20 +34,17 @@
                 <td>{{ $value->name }}</td>
                 <td>{{ $value->description }}</td>
                 <td>{{ $value->price }}</td>
-                <td>
-                    {{ Form::open(array('url' => 'products/' . $value->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('-', array('class' => 'btn btn-warning')) }}
-                    {{ Form::close() }}
-                    <a class="btn btn-small btn-success" href="{{ URL::to('products/' . $value->id) }}"><span class="glyphicon glyphicon-eye-open"></span></a>
+                <td align="center">
+                    <a class="btn btn-small btn-warning" href="{{ URL::to('products/' . $value->id) }}"><span class="glyphicon glyphicon-eye-open"></span></a>
                     <a class="btn btn-small btn-info" href="{{ URL::to('products/' . $value->id . '/edit') }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    {{ Form::open(array('url' => 'products/' . $value->id, 'style' => 'display:inline;')) }}
+                    {{ Form::hidden('_method', 'DELETE') }}
+                    {{ Form::button('<span class="glyphicon glyphicon-minus"></span>', array('type' => 'submit','class' => 'btn btn-small btn-danger')) }}
+                    {{ Form::close() }}
                 </td>
             </tr>
         @endforeach
 
         </tbody>
     </table>
-
-</div>
-</body>
-</html>
+@endsection
