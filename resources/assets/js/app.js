@@ -17,6 +17,9 @@ window.Vue = require('vue');
 
 Vue.component('tasks', require('./components/Tasks.vue'));
 
-const app = new Vue({
-    el: '#app'
-});
+var appElement = document.getElementById("app");
+if(appElement){
+    const app = new Vue({
+        el: '#app'
+    });
+}

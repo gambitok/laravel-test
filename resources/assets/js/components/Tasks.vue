@@ -112,7 +112,7 @@
 </script>
 
 <style>
-    body, .tasks-list {
+    .tasks-list {
         padding-top: 20px;
     }
     .done label{

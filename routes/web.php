@@ -19,8 +19,6 @@ Route::get('/tasks', function () {
 
 Route::get('/home', 'PagesController@getHome');
 
-Route::get('/about', 'PagesController@getAbout');
-
 Route::get('/contact', 'PagesController@getContact');
 
 Route::get('/messages', 'MessagesController@getMessages');
