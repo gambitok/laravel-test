@@ -13,6 +13,10 @@
 
 Route::get('/', 'PagesController@getHome');
 
+Route::get('/tasks', function () {
+    return view('tasks');
+});
+
 Route::get('/home', 'PagesController@getHome');
 
 Route::get('/about', 'PagesController@getAbout');
