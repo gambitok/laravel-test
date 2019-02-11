@@ -2,25 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>Document</title>
-    <link rel="stylesheet" href="/public/css/app.css">
 </head>
 <body>
 @include('inc.navbar')
 <div class="container">
     @if(Request::is('/'))
-        @include('inc.showcase')
+        @include('inc.banner')
     @endif
     <div class="row">
-        <div class="col-md-8 col-lg-8">
-            @include('inc.messages')
-            @yield('content')
-        </div>
-        <div class="col-md-4 col-lg-4">
-            @if(Request::is('/'))
-                @include('inc.sidebar')
-            @endif
-        </div>
+        @yield('content')
     </div>
 </div>
 
@@ -30,6 +23,7 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>
 

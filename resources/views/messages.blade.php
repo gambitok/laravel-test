@@ -12,7 +12,3 @@
         @endforeach
     @endif
 @endsection
-
-@section('sidebar')
-    @parent
-@endsection

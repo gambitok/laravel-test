@@ -8350,6 +8350,18 @@ button.close {
   }
 }
 
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.d-inline {
+  display: inline;
+}
+
 #footer {
   margin-top: 30px;
   padding: 20px;
