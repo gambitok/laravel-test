@@ -25,7 +25,7 @@ class ProductsController extends Controller
         $this->validate($request, [
             'name'       => 'required',
             'description'=> 'required',
-            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/'
+            'price'      => 'required|regex:/^\d+(\.\d{1,2})?$/'
         ]);
 
         $product = new Product;

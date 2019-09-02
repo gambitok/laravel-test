@@ -12,13 +12,11 @@
     @if(Request::is('/'))
         @include('inc.banner')
     @endif
-    <div class="row">
-        @yield('content')
-    </div>
+    @yield('content')
 </div>
 
 <footer id="footer" class="text-center">
-    <p>Copyright 2018 &copy; Dzy</p>
+    <p>Copyright {{ date('Y') }} &copy; Dmitro Dziubii</p>
 </footer>
 
 <!-- Scripts -->

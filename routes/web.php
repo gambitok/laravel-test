@@ -27,4 +27,8 @@ Route::post('/contact/submit', 'MessagesController@submit');
 
 Route::resource('products', 'ProductsController');
 
+Route::get('/album', 'PagesController@getAlbum');
+
+//Route::resource('album', 'AlbumController');
+
 Auth::routes();
