@@ -16,7 +16,7 @@
                 <li class="{{Request::is('messages') ? 'active' : ''}}"><a href="/messages">Messages</a></li>
                 <li class="{{Request::is('products') ? 'active' : ''}}"><a href="/products">Products</a></li>
                 <li class="{{Request::is('tasks') ? 'active' : ''}}"><a href="/tasks">Tasks</a></li>
-                <li class="{{Request::is('album') ? 'active' : ''}}"><a href="/album">Album</a></li>
+                <li class="{{Request::is('image-gallery') ? 'active' : ''}}"><a href="/image-gallery">Album</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->

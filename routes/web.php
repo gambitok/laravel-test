@@ -27,7 +27,9 @@ Route::post('/contact/submit', 'MessagesController@submit');
 
 Route::resource('products', 'ProductsController');
 
-Route::get('/album', 'PagesController@getAlbum');
+Route::get('image-gallery', 'ImageGalleryController@index');
+Route::post('image-gallery', 'ImageGalleryController@upload');
+Route::delete('image-gallery/{id}', 'ImageGalleryController@destroy');
 
 //Route::resource('album', 'AlbumController');
 
