@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Image Gallery')
+
 @section('content')
     <!-- References: https://github.com/fancyapps/fancyBox -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
@@ -25,7 +27,7 @@
         }
     </style>
 
-    <h3>Laravel - Image Gallery CRUD Example</h3>
+    <h3>Image Gallery</h3>
 
     @guest
     @else
@@ -79,7 +81,7 @@
                             <img class="img-responsive" alt="" src="/images/{{ $image->image }}" />
                             <div class='text-center'>
                                 <small class='text-muted'>{{ $image->title }}</small>
-                            </div> <!-- text-center / end -->
+                            </div>
                         </a>
                         <form action="{{ url('image-gallery',$image->id) }}" method="POST">
                             <input type="hidden" name="_method" value="delete">
@@ -88,12 +90,12 @@
                             <button type="submit" class="close-icon btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
                             @endguest
                         </form>
-                    </div> <!-- col-6 / end -->
+                    </div>
                 @endforeach
             @endif
 
-        </div> <!-- list-group / end -->
-    </div> <!-- row / end -->
+        </div>
+    </div>
 
 <script type="text/javascript">
     $(document).ready(function(){

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "Edit $product->name")
+
 @section('content')
     <h1>Edit {{ $product->name }}</h1>
 

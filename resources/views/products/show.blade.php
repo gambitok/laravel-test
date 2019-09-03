@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
+@section('title', "Display $product->name")
+
 @section('content')
-    <h1>Showing {{ $product->name }}</h1>
+    <h1>Display {{ $product->name }}</h1>
 
     <div class="jumbotron text-center">
         <h2>{{ $product->name }}</h2>
