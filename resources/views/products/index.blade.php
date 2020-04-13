@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
+@section('title', 'Products')
+
 @section('content')
-    <h1>All the products</h1>
+    <h1>Products list</h1>
 
     <a class="btn btn-small btn-success" href="{{ URL::to('products/create') }}"><span class="glyphicon glyphicon-plus"></span> Add product</a>
     {{ Form::open(array('url' => 'products/truncate', 'class' => 'd-inline')) }}

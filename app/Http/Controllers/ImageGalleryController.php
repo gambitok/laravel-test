@@ -36,7 +36,6 @@ class ImageGalleryController extends Controller
         $input['title'] = $request->title;
         ImageGallery::create($input);
 
-
         return back()
             ->with('success','Image Uploaded successfully.');
     }
